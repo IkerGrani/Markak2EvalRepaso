@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--Nabigatzailean ondo joateko-->
+
+<head>
+    <title>Elorrieta</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Itxura.css">
+    <style>
+        /* Estilo para la tabla */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<!--ikusten den osoa-->
+
+<body>
+    <!--Titulua eta logoa-->
+    <header>
+        <h1>Formulario</h1>
+    </header>
+
+    <main>
+        <!--Todos los input type:
+        1.-text: Permite al usuario introducir texto.
+        2.-password: Similar al input de texto, pero oculta los caracteres que el usuario escribe (útil para contraseñas).
+        3.-checkbox: Permite al usuario seleccionar una o más opciones entre varias.
+        4.-radio: Permite al usuario seleccionar una opción entre varias, pero solo puede seleccionar una.
+        5.-submit: Utilizado para enviar el formulario al servidor.
+        6.-reset: Restablece todos los valores de los campos del formulario a sus valores iniciales.
+        7.-button: Representa un botón que no realiza ninguna acción por defecto, pero se puede programar con JavaScript.
+        8.-file: Permite al usuario seleccionar uno o más archivos para cargarlos al servidor.
+        9.-hidden: Un campo oculto que no es visible para el usuario, pero puede ser enviado con el formulario.
+        10.-image: Similar a submit, pero muestra una imagen en lugar de un botón.
+        11.-date: Permite al usuario seleccionar una fecha.
+        12.-email: Requiere que el usuario introduzca una dirección de correo electrónico válida.
+        13.-number: Permite al usuario introducir un número.
+        14.-range: Representa un control deslizante que permite al usuario seleccionar un valor numérico de un rango específico.
+        15.-tel: Permite al usuario introducir un número de teléfono.
+        16.-url: Requiere que el usuario introduzca una URL válida.
+        -->
+
+        <form>
+            <fieldset>
+                <legend>Formulario agregar a tabla</legend>
+                <!--Select-->
+                <select name="Zikloa" id="Zikloa">
+                    <option value="SMR">SMR</option>
+                    <option value="ASIR">ASIR</option>
+                    <option value="DAM">DAM</option>
+                    <option value="DAW">DAW</option>
+                </select>
+
+                <br>
+
+                <!--Checkbox-->
+                <input type="checkbox" id="1maila" name="1maila">
+                <label for="1maila">1.maila</label>
+                <input type="checkbox" id="2maila" name="2maila">
+                <label for="2maila">2.maila</label>
+
+                <br>
+
+                <!--Radio-->
+                <input type="radio" id="euskera" name="hizkuntza" value="euskera">
+                <label for="euskera">Euskera</label>
+                <input type="radio" id="gaztelania" name="hizkuntza" value="gaztelania">
+                <label for="gaztelania">Gaztelania</label>
+
+                <br>
+
+                <!--Text-->
+                <label for="galdera1">Galdera1</label>
+                <input type="text" id="galdera1" name="galdera1">
+
+                <br>
+
+                <!--Button para agregar texto-->
+                <button type="button" id="agregarTextoBtn" onclick="agregarTextoATabla()">Agregar Texto a la
+                    Tabla</button>
+
+                <!--Tabla para texto simple-->
+                <table id="miTablaTexto">
+                    <thead>
+                        <tr>
+                            <th>Texto Agregado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaBodyTexto">
+                    </tbody>
+                </table>
+
+                <!--Button para agregar datos-->
+                <button type="button" id="agregarDatosBtn" onclick="agregarDatosATablas()">Agregar Datos a la
+                    Tabla</button>
+
+                <!--Tabla para datos compuestos-->
+                <table id="miTablaDatos">
+                    <thead>
+                        <tr>
+                            <th>Zikloa</th>
+                            <th>Maila1</th>
+                            <th>Maila2</th>
+                            <th>Hizkuntza</th>
+                            <th>Galdera1</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaBodyDatos">
+                    </tbody>
+                </table>
+
+                <script>
+                    // Función para agregar el texto a la tabla
+                    function agregarTextoATabla() {
+                        // Obtenemos el valor del input de texto
+                        var texto = document.getElementById('galdera1').value;
+
+                        // Creamos un elemento <tr> y <td> para el texto
+                        var newRow = document.createElement('tr');
+                        var newCell = document.createElement('td');
+                        newCell.textContent = texto;
+
+                        // Agregamos la celda al row
+                        newRow.appendChild(newCell);
+
+                        // Agregamos el row a la tabla
+                        document.getElementById('tablaBodyTexto').appendChild(newRow);
+                    }
+
+                    // Función para agregar datos a la tabla
+                    function agregarDatosATablas() {
+                        var zikloa = document.getElementById('Zikloa').value;
+                        var maila1 = document.getElementById('1maila').checked ? '1' : '0';
+                        var maila2 = document.getElementById('2maila').checked ? '1' : '0';
+                        var hizkuntza = document.getElementById('euskera').checked ? 'Euskera' : 'Gaztelania';
+                        var galdera1 = document.getElementById('galdera1').value;
+
+                        var newRow = document.createElement('tr');
+                        var cellZikloa = document.createElement('td');
+                        var cellMaila1 = document.createElement('td');
+                        var cellMaila2 = document.createElement('td');
+                        var cellHizkuntza = document.createElement('td');
+                        var cellGaldera1 = document.createElement('td');
+
+                        cellZikloa.textContent = zikloa;
+                        cellMaila1.textContent = maila1;
+                        cellMaila2.textContent = maila2;
+                        cellHizkuntza.textContent = hizkuntza;
+                        cellGaldera1.textContent = galdera1;
+
+                        newRow.appendChild(cellZikloa);
+                        newRow.appendChild(cellMaila1);
+                        newRow.appendChild(cellMaila2);
+                        newRow.appendChild(cellHizkuntza);
+                        newRow.appendChild(cellGaldera1);
+
+                        document.getElementById('tablaBodyDatos').appendChild(newRow);
+                    }
+                </script>
+            </fieldset>
+
+            <fieldset>
+                <legend>Primer Formulario</legend>
+
+            </fieldset>
+        </form>
+
+    </main>
+
+
+</body>
+
+</html>
