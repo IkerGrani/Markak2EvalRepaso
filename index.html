@@ -173,8 +173,85 @@
             </fieldset>
 
             <fieldset>
-                <legend>Primer Formulario</legend>
+                <legend>Cambiar texto</legend>
+                <label for="texto">Texto</label>
+                <input type="text" id="texto" name="texto"><br>
+                <button type="button" onclick="cambiarAMayusculas()">Cambiar a Mayúsculas</button>
+                <button type="button" onclick="cambiarAMinusculas()">Cambiar a Minúsculas</button>
 
+                <script>
+                    function cambiarAMayusculas() {
+                        var inputTexto = document.getElementById('texto');
+                        var texto = inputTexto.value;
+                        inputTexto.value = texto.toUpperCase();
+                    }
+
+                    function cambiarAMinusculas() {
+                        var inputTexto = document.getElementById('texto');
+                        var texto = inputTexto.value;
+                        inputTexto.value = texto.toLowerCase();
+                    }
+                </script>
+            </fieldset>
+
+            <fieldset>
+                <legend>Cambiar color</legend>
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color"><br>
+                <button type="button" onclick="cambiarColorLetra()">Cambiar color letra</button>
+                <button type="button" onclick="cambiarColorInput()">Cambiar color input</button>
+                <button type="button" onclick="cambiarColorFondo()">Cambiar color fondo</button>
+
+                <script>
+                    function cambiarColorLetra() {
+                        var color = document.getElementById('color').value;
+                        var input = document.getElementById('color');
+                        input.style.color = "red";
+                    }
+
+                    function cambiarColorInput() {
+                        var color = document.getElementById('color').value;
+                        var input = document.getElementById('color');
+                        input.style.backgroundColor = "red";
+                    }
+
+                    function cambiarColorFondo() {
+                        var color = document.getElementById('color').value;
+                        document.body.style.backgroundColor = "red";
+                    }
+                </script>
+            </fieldset>
+
+            <fieldset>
+                <legend>Primer Formulario</legend>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre"><br>
+                <label for="apellido">Apellido:</label><br>
+                <input type="text" id="apellido" name="apellido"><br>
+                <label for="correo">Correo:</label><br>
+                <input type="email" id="correo" name="correo"><br>
+                <label for="NAN">DNI:</label><br>
+                <input type="text" id="NAN" name="NAN"><br>
+                <button type="button" onclick="validarFormulario()">Enviar</button>
+
+                <script>
+                    function validarFormulario() {
+                        var NAN = document.getElementById('NAN').value;
+                        // Verificar si el NAN tiene 9 caracteres (8 números y 1 letra)
+                        if (NAN.length !== 9) {
+                            alert('El NAN debe tener 8 dígitos numéricos seguidos de una letra.');
+                        } else {
+                            var numeros = NAN.substring(0, 8); // Obtener los primeros 8 caracteres (números)
+                            var letra = NAN.substring(8).toUpperCase(); // Obtener el último carácter (letra) y convertirla a mayúsculas
+                            if (isNaN(numeros) || !/^[A-Z]$/.test(letra)) {
+                                alert('El NAN debe tener 8 dígitos numéricos seguidos de una letra.');
+                            } else {
+                                alert('El NAN es válido.');
+                                // Aquí puedes enviar el formulario si es necesario
+                            }
+                        }
+                    }
+                </script>
             </fieldset>
         </form>
 
